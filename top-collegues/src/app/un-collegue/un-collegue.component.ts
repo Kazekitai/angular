@@ -7,12 +7,23 @@ import {Collegue} from '../shared/domain/collegue'
   styleUrls: ['./un-collegue.component.css']
 })
 export class UnCollegueComponent implements OnInit {
-	@Input() collegue:Collegue;
+	@Input() collegue:Collegue
+	score: number
 
   	constructor() {
+  		
   	}
 
   	ngOnInit() {
+  		this.score = this.collegue._score
   	}
+
+  	scoreChanges(event) {
+	    this.score = event
+	}
+
+	handleEventClicked(newScore){
+	    return this.score = newScore;
+	}
 
 }

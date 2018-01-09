@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+body, html {
+    overflow-x: hidden;
+    height: 100%;
+}
+
 .AppComponent {
 	background-color: darkgray;
 	padding: 4%;
@@ -19,6 +25,8 @@
 
 .info {
 	padding: 1%;
+    background-color: lightgreen;
+    color: green;
 }
 
 .card {
@@ -28,6 +36,8 @@
     border: none;
     border-radius: .28571429rem;
     box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    height: 100%;
+    justify-content: space-between;
 }
 
 .card-block {
@@ -73,17 +83,16 @@
 .text-bold {
     font-weight: 700;
 }
-.card img {
-
-}
 
 .card-container {
 	/*width: 20%;*/
+    height: 100%;
 }
 
 .collegue {
-	width: 40%;
+	width: 20%;
     margin: 2%;
+    height: 80%;
 }
 
 .row {
@@ -109,4 +118,9 @@
     color: red;
     margin: 1%;
 
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
 }

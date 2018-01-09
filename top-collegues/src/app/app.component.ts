@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
 
 	ngOnInit() {
 		this.collegues = [
-		new Collegue('Aline','https://img.buzzfeed.com/buzzfeed-static/static/2014-04/tmp/webdr02/2/17/0e7cd6da3ce720d983515a9ab831a530-3.jpg?downsize=715:*&output-format=auto&output-quality=auto',100),
-		new Collegue('Hugues','http://www.math.uni-frankfurt.de/~person/_4170854.jpg',100)
+		new Collegue('Hermione','https://img.buzzfeed.com/buzzfeed-static/static/2014-04/tmp/webdr02/2/17/0e7cd6da3ce720d983515a9ab831a530-3.jpg?downsize=715:*&output-format=auto&output-quality=auto',10),
+		new Collegue('Ron','https://www.quizz.biz/uploads/quizz/687335/orig/1.jpg?1479691894',50), new Collegue('Harry','http://www.jdubuzz.com/files/2016/09/deux-ans-plus-tard-le-revoila-dans-harry-potter-et-la-chambre-des-secrets-il-n-a-presque-pas-bouge.jpg',100)
 		];
 	}
 

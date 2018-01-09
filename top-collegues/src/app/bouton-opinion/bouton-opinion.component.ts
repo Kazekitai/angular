@@ -6,9 +6,8 @@ import { Component, Input, Output,EventEmitter, OnInit } from '@angular/core';
   styleUrls: ['./bouton-opinion.component.css']
 })
 export class BoutonOpinionComponent implements OnInit {
-	@Input() collegue:Collegue;
-	@Output() jaime: EventEmitter<any> = new EventEmitter();
-	@Output() jedeteste: EventEmitter<any> = new EventEmitter();
+	@Input() score:number;
+	@Output() change: EventEmitter<number> = new EventEmitter<number>();
 
 	constructor() { }
 
@@ -18,13 +17,15 @@ export class BoutonOpinionComponent implements OnInit {
 	jaime() {
 		// événement clic sur le bouton "J'aime"
 		// => le score du collègue est augmenté de 10
-		collegue.score += 10
+		this.score += 10
+		this.change.emit(this.score)
 	}
 
 	jedeteste() {
 		// événement clic sur le bouton "Je déteste"
 		// => le score du collègue est diminué de 5
-		collegue.score -= 5
+		this.score -= 5
+		this.change.emit(this.score)
 	}
 
 }

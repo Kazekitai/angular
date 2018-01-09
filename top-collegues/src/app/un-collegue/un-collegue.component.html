@@ -4,11 +4,11 @@
         <div class="card-block">
             <h5 class="text-bold">{{collegue._nom}}</h5>
             <div class="card-text">
-                {{collegue._score}}
+                {{score}}
             </div>
         </div>
         <div class="card-footer">
-            <app-bouton-opinion></app-bouton-opinion>
+            <app-bouton-opinion [score]="collegue._score" (change)="scoreChanges($event)" (click)="handleEventClicked(score)"></app-bouton-opinion>
         </div>
     </div>
 </div>
