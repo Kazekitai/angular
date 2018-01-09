@@ -12,7 +12,7 @@ class Sejour {
 
 class SejourService {
 	constructor(private _sejours:Sejour[]){
-		this._sejours = [new Sejour('Lisbonne',100),new Sejour('Paris',90)]
+		this._sejours = [new Sejour('Lisbonne',100),new Sejour('Paris',90),new Sejour('Safari au Botswana',1000)]
 	}
 
 	findByNom(nomSejour:string):Sejour[] {
@@ -23,4 +23,4 @@ class SejourService {
 let sejours:Sejour[] = [];
 let sejourService = new SejourService(sejours)
 console.log(sejourService.findByNom('Lisbonne'))
-console.log(sejourService.findByNom('Paris'))
+console.log(sejourService.findByNom('Safari au Botswana'))

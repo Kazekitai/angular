@@ -23,7 +23,7 @@ var Sejour = /** @class */ (function () {
 var SejourService = /** @class */ (function () {
     function SejourService(_sejours) {
         this._sejours = _sejours;
-        this._sejours = [new Sejour('Lisbonne', 100), new Sejour('Paris', 90)];
+        this._sejours = [new Sejour('Lisbonne', 100), new Sejour('Paris', 90), new Sejour('Safari au Botswana', 1000)];
     }
     SejourService.prototype.findByNom = function (nomSejour) {
         return this._sejours.filter(function (s) { return s.nom == nomSejour; });
@@ -33,4 +33,4 @@ var SejourService = /** @class */ (function () {
 var sejours = [];
 var sejourService = new SejourService(sejours);
 console.log(sejourService.findByNom('Lisbonne'));
-console.log(sejourService.findByNom('Paris'));
+console.log(sejourService.findByNom('Safari au Botswana'));

@@ -1,0 +1,27 @@
+<div class="AppComponent">
+  <h1>Top Collègues</h1>
+    <h6>Les meilleurs collègues du moment</h6> 
+  <form id="ajouterCollegueform" class="form-horizontal" role="form">
+                                          
+    <div style="margin-bottom: 25px" class="input-group">
+      <label for="add-username" class="control-label formLabel">Pseudo</label>
+      <input id="add-username" type="text" class="form-control" name="add-username" value="" placeholder="Pseudo" #pseudo>
+    </div>
+
+    <div style="margin-bottom: 25px" class="input-group">
+      <label for="add-urlimage" class="control-label formLabel">Url image</label>
+      <input id="add-urlimage" type="text" class="form-control" name="add-urlimage" placeholder="url de l'image" #imageUrl>
+    </div>
+
+    <div style="margin-top:10px" class="form-group">
+      <div class="col-sm-12 controls">
+        <button id="btn-add" class="btn add-btn" (click)="add(pseudo, imageUrl)">Ajouter un nouveau collègue</button>
+      </div>
+    </div>   
+  </form> 
+</div>
+<div class="info" *ngIf="aff"><p id="add-confirm">Le collègue {{pseudo.value}} a été ajouté avec succès</p></div>
+ <div class="row">
+  <div *ngFor="let colleg of collegues;" class="collegue" >
+    <app-un-collegue [collegue]="colleg"></app-un-collegue>  
+ </div>
