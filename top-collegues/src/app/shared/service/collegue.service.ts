@@ -6,9 +6,6 @@ import {HttpClient} from '@angular/common/http';
 export class CollegueService {
 	collegues:Collegue[];
   	constructor(private http:HttpClient) {
-  		// this.headers = new Headers({ 'Content-Type': 'application/json', 
-    //                                  'Accept': 'q=0.8;application/json;q=0.9' });
-    //     this.options = new RequestOptions({ headers: this.headers });
   	}
 
   	listerCollegues():Promise<Collegue[]> {
@@ -16,7 +13,16 @@ export class CollegueService {
 	}
 	
 	sauvegarder(newCollegue:Collegue):Promise<Collegue> {
-		console.log('newCollegue ', newCollegue);
 		return this.http.post<Collegue>('http://localhost:8080/collegues/creer',newCollegue).toPromise();
+	}
+
+	aimerUnCollegue(unCollegue:Collegue):Promise<Collegue> {
+		let actionType= {"action":"aimer"};
+		return this.http.patch<Collegue>('http://localhost:8080/collegues/'+unCollegue.pseudo,actionType).toPromise();
+	}
+
+	detesterUnCollegue(unCollegue:Collegue):Promise<Collegue> {
+		let actionType= {"action":"detester"};
+		return this.http.patch<Collegue>('http://localhost:8080/collegues/'+unCollegue.pseudo,actionType).toPromise();
 	}
 }

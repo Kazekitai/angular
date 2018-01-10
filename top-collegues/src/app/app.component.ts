@@ -34,11 +34,10 @@ export class AppComponent implements OnInit {
 			this.aff = false;
 			pseudo.value = "";
 			imageUrl.value = ""}, 2000)
-		
+
 		let id:number = 0;
 		let newCollegue:Collegue = new Collegue(id,pseudo.value,imageUrl.value,0);
 		this.collegueService.sauvegarder(newCollegue).then(result => {
-			console.log('result ',result);
 			this.collegues.push(result);
 		});
 		return false;

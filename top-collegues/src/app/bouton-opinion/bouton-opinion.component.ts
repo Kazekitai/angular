@@ -1,4 +1,6 @@
 import { Component, Input, Output,EventEmitter, OnInit } from '@angular/core';
+import { CollegueService } from '../shared/service/collegue.service';
+import {Collegue} from '../shared/domain/collegue';
 
 @Component({
   selector: 'app-bouton-opinion',
@@ -6,10 +8,10 @@ import { Component, Input, Output,EventEmitter, OnInit } from '@angular/core';
   styleUrls: ['./bouton-opinion.component.css']
 })
 export class BoutonOpinionComponent implements OnInit {
-	@Input() score:number;
+	@Input() collegue:Collegue;
 	@Output() change: EventEmitter<number> = new EventEmitter<number>();
 
-	constructor() { }
+	constructor(private collegueService:CollegueService) {}
 
 	ngOnInit() {
 	}
@@ -17,15 +19,22 @@ export class BoutonOpinionComponent implements OnInit {
 	jaime() {
 		// événement clic sur le bouton "J'aime"
 		// => le score du collègue est augmenté de 10
-		this.score += 10
-		this.change.emit(this.score)
+		let score:number = this.collegue.score;
+		this.collegueService.aimerUnCollegue(this.collegue).then(result => {
+			score = result.score;
+			this.change.emit(score);
+		});
+		
 	}
 
 	jedeteste() {
 		// événement clic sur le bouton "Je déteste"
 		// => le score du collègue est diminué de 5
-		this.score -= 5
-		this.change.emit(this.score)
+		let score:number = this.collegue.score;
+		this.collegueService.detesterUnCollegue(this.collegue).then(result => {
+			score = result.score;
+			this.change.emit(score);
+		});
 	}
 
 }
