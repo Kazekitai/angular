@@ -21,9 +21,8 @@ export class AppComponent implements OnInit {
 
 	ngOnInit() {
 		this.collegueService.listerCollegues().then(result => {
-			// result.each(r => this.collegues.push(r));
 			for(let i in result) {
-				let collegue = new Collegue(result[i].id, result[i].pseudo, result[i].imageUrl,result[i].score);
+				let collegue:Collegue = new Collegue(result[i].id, result[i].pseudo, result[i].imageUrl,result[i].score);
 				this.collegues.push(collegue);
 			}
 		});
@@ -35,8 +34,13 @@ export class AppComponent implements OnInit {
 			this.aff = false;
 			pseudo.value = "";
 			imageUrl.value = ""}, 2000)
-		let tailleAvantAjout = this.collegues.length;
-		this.collegues[this.collegues.length] = new Collegue(pseudo.value,imageUrl.value,0)
+		
+		let id:number = 0;
+		let newCollegue:Collegue = new Collegue(id,pseudo.value,imageUrl.value,0);
+		this.collegueService.sauvegarder(newCollegue).then(result => {
+			console.log('result ',result);
+			this.collegues.push(result);
+		});
 		return false;
 	}
 
