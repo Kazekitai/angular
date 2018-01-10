@@ -123,4 +123,5 @@ body, html {
 .button-container {
     display: flex;
     justify-content: center;
+    font-size: 0.8rem;
 }
