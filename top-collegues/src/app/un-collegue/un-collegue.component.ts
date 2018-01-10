@@ -15,7 +15,7 @@ export class UnCollegueComponent implements OnInit {
   	}
 
   	ngOnInit() {
-  		this.score = this.collegue._score
+  		this.score = this.collegue.score
   	}
 
   	scoreChanges(event) {
