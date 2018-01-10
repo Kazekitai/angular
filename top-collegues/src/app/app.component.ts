@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
 	collegues:Collegue[] = [];
 	msgColor:string;
 	msgBackgroundColor:string;
+	msg:string;
+	succesAjout:boolean= false;
 	aff:boolean = false;
 
 	constructor(private collegueService:CollegueService) { }
@@ -38,7 +40,22 @@ export class AppComponent implements OnInit {
 		let id:number = 0;
 		let newCollegue:Collegue = new Collegue(id,pseudo.value,imageUrl.value,0);
 		this.collegueService.sauvegarder(newCollegue).then(result => {
-			this.collegues.push(result);
+			let collegueJson = JSON.parse(result.entite);
+			console.log(result)
+			console.log(collegueJson);
+			
+			if(result.succes == "true") {
+				let colleg:Collegue = new Collegue(collegueJson.id,collegueJson.pseudo,collegueJson.imageUrl,collegueJson.score);
+				console.log('colleg ', colleg);
+				this.collegues.push(colleg);
+				this.msgColor = "green";
+				this.msgBackgroundColor = "lightgreen";
+				this.succesAjout = true;
+			} else {
+				this.msgColor = "white";
+				this.msgBackgroundColor = "red";
+			}
+			this.msg = result.message;
 		});
 		return false;
 	}

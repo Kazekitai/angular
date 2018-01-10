@@ -20,7 +20,7 @@
     </div>   
   </form> 
 </div>
-<div class="info" *ngIf="aff"><p id="add-confirm">Le collègue {{pseudo.value}} a été ajouté avec succès</p></div>
+<div class="info" *ngIf="aff"><p id="add-confirm" [ngStyle]="{'backgroundColor': succesAjout ? 'lightgreen' : 'red', 'color': succesAjout ? 'green' : 'white'}">{{msg}}</p></div>
  <div class="row">
   <div *ngFor="let colleg of collegues;" class="collegue" >
     <app-un-collegue [collegue]="colleg"></app-un-collegue>  
