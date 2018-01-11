@@ -13,6 +13,7 @@ import { VueClassiqueComponent } from './vue-classique/vue-classique.component';
 import { VueCarrouselComponent } from './vue-carrousel/vue-carrousel.component';
 import { FormCollegueComponent } from './form-collegue/form-collegue.component';
 import { DetailCollegueComponent } from './detail-collegue/detail-collegue.component';
+import { LimiteNbColleguesComponent } from './limite-nb-collegues/limite-nb-collegues.component';
 
 
 const appRoutes: Routes = [
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
     VueCarrouselComponent,
     FormCollegueComponent,
     DetailCollegueComponent,
+    LimiteNbColleguesComponent,
   ],
   imports: [
     BrowserModule,

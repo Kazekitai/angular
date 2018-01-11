@@ -17,8 +17,13 @@ export class VueClassiqueComponent implements OnInit {
 			for(let i in result) {
 				let collegue:Collegue = new Collegue(result[i].id, result[i].pseudo, result[i].imageUrl,result[i].score);
 				this.collegues.push(collegue);
+        this.exist = true;
 			}
 	 });
+  }
+
+  limitChanges(event) {
+      this.limit = event;
   }
 
 }

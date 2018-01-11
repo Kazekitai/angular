@@ -278,3 +278,9 @@ a {
 .large-card .card-container .card .card-text {
     font-size: 2.5rem !important;
 }
+
+.form-limit {
+    width: 80%;
+    margin-left: 2%;
+    margin-top: 2%;
+}

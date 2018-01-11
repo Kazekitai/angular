@@ -4,8 +4,9 @@
     <app-form-collegue></app-form-collegue>
 </div>
 <app-menu></app-menu>
-<div class="row">
-	<div *ngFor="let colleg of collegues;" class="collegue" >
+<app-limite-nb-collegues (change)="limitChanges($event)"></app-limite-nb-collegues>
+<div  class="row">
+	<div *ngFor="let colleg of collegues | slice:0:limite;" class="collegue" >
   		<app-un-collegue [collegue]="colleg"></app-un-collegue>
   	</div>
 </div>
