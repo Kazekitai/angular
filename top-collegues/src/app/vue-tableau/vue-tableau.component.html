@@ -18,7 +18,7 @@
     <tbody *ngFor="let colleg of collegues$ | async;">
     	<tr>
     		<td class="table-col"><a routerLink="/detail/{{colleg.pseudo}}"><img src="{{colleg.imageUrl}}" class="table-img"/></a></td>
-    		<td class="table-col"><a routerLink="/detail/{{colleg.pseudo}}">{{colleg.pseudo}}</a></td>
+    		<td class="table-col"><a routerLink="/detail/{{colleg.pseudo}}">{{colleg.pseudo | uppercase}}</a></td>
     		<td class="table-col">{{colleg.score}}</td>
     		<td class="table-col"><app-bouton-opinion [collegue]="colleg" (change)="scoreChanges(colleg,$event)" (click)="handleEventClicked(colleg,colleg.score)"></app-bouton-opinion></td>
     	</tr>

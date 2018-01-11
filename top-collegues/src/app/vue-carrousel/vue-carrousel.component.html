@@ -10,7 +10,7 @@
     <img class="carrousel-img" src="{{colleg.imageUrl}}" alt="Random first slide" routerLink="/detail/{{colleg.pseudo}}">
     <div class="carousel-caption">
       <h3>{{colleg.score}}</h3>
-      <p>{{colleg.pseudo}}</p>
+      <p>{{colleg.pseudo | uppercase}}</p>
       <div class="action-btn-container">
             <app-bouton-opinion [collegue]="colleg" (change)="scoreChanges(colleg,$event)" (click)="handleEventClicked(colleg,colleg.score)"></app-bouton-opinion>
         </div>

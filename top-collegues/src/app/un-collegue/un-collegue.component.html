@@ -3,7 +3,7 @@
         <a routerLink="/detail/{{collegue.pseudo}}">
             <img class="card-img-top" src="{{collegue.imageUrl}}">
             <div class="card-block">
-                <h5 class="text-bold">{{collegue.pseudo}}</h5>
+                <h5 class="text-bold">{{collegue.pseudo | uppercase}}</h5>
                 <div class="card-text">
                     {{collegue.score}}
                 </div>
