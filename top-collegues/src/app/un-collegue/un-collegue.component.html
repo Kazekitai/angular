@@ -1,14 +1,16 @@
 <div class="card-container">
     <div class="card">
-        <img class="card-img-top" src="{{collegue.imageUrl}}">
-        <div class="card-block">
-            <h5 class="text-bold">{{collegue.pseudo}}</h5>
-            <div class="card-text">
-                {{score}}
+        <a routerLink="/detail/{{collegue.pseudo}}">
+            <img class="card-img-top" src="{{collegue.imageUrl}}">
+            <div class="card-block">
+                <h5 class="text-bold">{{collegue.pseudo}}</h5>
+                <div class="card-text">
+                    {{collegue.score}}
+                </div>
             </div>
-        </div>
+        </a>
         <div class="card-footer">
-            <app-bouton-opinion [collegue]="collegue" (change)="scoreChanges($event)" (click)="handleEventClicked(score)"></app-bouton-opinion>
+            <app-bouton-opinion [collegue]="collegue" (change)="collegue.scoreChanges($event)" (click)="collegue.handleEventClicked(collegue.score)"></app-bouton-opinion>
         </div>
     </div>
 </div>

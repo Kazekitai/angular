@@ -11,6 +11,10 @@ export class CollegueService {
   	listerCollegues():Promise<Collegue[]> {
 	return this.http.get<Collegue[]>('http://localhost:8080/collegues').toPromise();
 	}
+
+	recupererCollegueParPseudo(pseudo:string):Promise<Collegue> {
+	return this.http.get<Collegue>('http://localhost:8080/collegues/'+pseudo).toPromise();
+	}
 	
 	sauvegarder(newCollegue:Collegue):Promise<any> {
 		const httpOptions = {
@@ -34,4 +38,5 @@ export class CollegueService {
 		let actionType= {"action":"detester"};
 		return this.http.patch<Collegue>('http://localhost:8080/collegues/'+unCollegue.pseudo,actionType).toPromise();
 	}
+
 }

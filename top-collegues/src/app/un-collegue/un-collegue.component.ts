@@ -8,22 +8,12 @@ import {Collegue} from '../shared/domain/collegue'
 })
 export class UnCollegueComponent implements OnInit {
 	@Input() collegue:Collegue
-	score: number
 
   	constructor() {
-  		
   	}
 
   	ngOnInit() {
-  		this.score = this.collegue.score
+
   	}
-
-  	scoreChanges(event) {
-	    this.score = event
-	}
-
-	handleEventClicked(newScore){
-	    return this.score = newScore;
-	}
 
 }

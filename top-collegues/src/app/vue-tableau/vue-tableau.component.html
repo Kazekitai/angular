@@ -1,0 +1,26 @@
+<div class="AppComponent">
+  <h1>Top Collègues</h1>
+    <h6>Les meilleurs collègues du moment</h6>
+    <app-form-collegue></app-form-collegue>
+</div>
+<app-menu></app-menu>
+<div class="container">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Pseudo</th>
+        <th>Score</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let colleg of collegues;">
+    	<tr>
+    		<td class="table-col"><a routerLink="/detail/{{colleg.pseudo}}"><img src="{{colleg.imageUrl}}" class="table-img"/></a></td>
+    		<td class="table-col"><a routerLink="/detail/{{colleg.pseudo}}">{{colleg.pseudo}}</a></td>
+    		<td class="table-col">{{colleg.score}}</td>
+    		<td class="table-col"><app-bouton-opinion [collegue]="colleg" (change)="colleg.scoreChanges($event)" (click)="colleg.handleEventClicked(colleg.score)"></app-bouton-opinion></td>
+    	</tr>
+    </tbody>
+  </table>
+</div>

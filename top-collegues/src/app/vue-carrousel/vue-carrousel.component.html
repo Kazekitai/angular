@@ -1,0 +1,18 @@
+<div class="AppComponent">
+  <h1>Top Collègues</h1>
+    <h6>Les meilleurs collègues du moment</h6>
+    <app-form-collegue></app-form-collegue>
+</div>
+<app-menu></app-menu>
+<ngb-carousel class="carrousel-container">
+  <ng-template ngbSlide *ngFor="let colleg of collegues;">
+    <img class="carrousel-img" src="{{colleg.imageUrl}}" alt="Random first slide" routerLink="/detail/{{colleg.pseudo}}">
+    <div class="carousel-caption">
+      <h3>{{colleg.score}}</h3>
+      <p>{{colleg.pseudo}}</p>
+      <div class="action-btn-container">
+            <app-bouton-opinion [collegue]="colleg" (change)="colleg.scoreChanges($event)" (click)="colleg.handleEventClicked(colleg.score)"></app-bouton-opinion>
+        </div>
+    </div>
+  </ng-template>
+</ngb-carousel>

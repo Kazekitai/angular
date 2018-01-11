@@ -1,0 +1,11 @@
+<div class="AppComponent">
+  <h1>Top Collègues</h1>
+    <h6>Les meilleurs collègues du moment</h6>
+    <app-form-collegue></app-form-collegue>
+</div>
+<app-menu></app-menu>
+<div class="row">
+	<div *ngFor="let colleg of collegues;" class="collegue" >
+  		<app-un-collegue [collegue]="colleg"></app-un-collegue>
+  	</div>
+</div>
