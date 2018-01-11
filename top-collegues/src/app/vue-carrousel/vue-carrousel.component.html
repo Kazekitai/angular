@@ -4,15 +4,15 @@
     <app-form-collegue></app-form-collegue>
 </div>
 <app-menu></app-menu>
-<app-limite-nb-collegues></app-limite-nb-collegues>
+<!-- <app-limite-nb-collegues></app-limite-nb-collegues> -->
 <ngb-carousel class="carrousel-container">
-  <ng-template ngbSlide *ngFor="let colleg of collegues;">
+  <ng-template ngbSlide *ngFor="let colleg of collegues$ | async;">
     <img class="carrousel-img" src="{{colleg.imageUrl}}" alt="Random first slide" routerLink="/detail/{{colleg.pseudo}}">
     <div class="carousel-caption">
       <h3>{{colleg.score}}</h3>
       <p>{{colleg.pseudo}}</p>
       <div class="action-btn-container">
-            <app-bouton-opinion [collegue]="colleg" (change)="colleg.scoreChanges($event)" (click)="colleg.handleEventClicked(colleg.score)"></app-bouton-opinion>
+            <app-bouton-opinion [collegue]="colleg" (change)="scoreChanges(colleg,$event)" (click)="handleEventClicked(colleg,colleg.score)"></app-bouton-opinion>
         </div>
     </div>
   </ng-template>

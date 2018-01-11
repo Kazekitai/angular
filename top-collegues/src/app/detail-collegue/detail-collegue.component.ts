@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CollegueService } from '../shared/service/collegue.service';
 import {Collegue} from '../shared/domain/collegue'
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-detail-collegue',
@@ -17,10 +18,12 @@ export class DetailCollegueComponent implements OnInit {
   	}
 
   	ngOnInit() {
-  		this.collegueService.recupererCollegueParPseudo(this.pseudo).then(result => {
-			this.collegue = new Collegue(result[0].id, result[0].pseudo, result[0].imageUrl,result[0].score);
-			console.log('collegue', this.collegue );
-		});
+  		// this.collegueService.recupererCollegueParPseudo(this.pseudo).then(result => {
+		// 	this.collegue = new Collegue(result[0].id, result[0].pseudo, result[0].imageUrl,result[0].score);
+		// 	console.log('collegue', this.collegue );
+		// });
+		this.collegueService.recupererCollegueParPseudo(this.pseudo).subscribe((c) => { this.collegue = c; });
+		console.log(this.collegue)
   	}
 
 }

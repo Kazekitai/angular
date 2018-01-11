@@ -20,19 +20,20 @@ export class BoutonOpinionComponent implements OnInit {
 		// événement clic sur le bouton "J'aime"
 		// => le score du collègue est augmenté de 10
 		let score:number = this.collegue.score;
-		this.collegueService.aimerUnCollegue(this.collegue).then(result => {
-			score = result.score;
+		this.collegueService.aimerUnCollegue(this.collegue)
+      	.subscribe(collegue => {
+			score = collegue.score;
 			this.change.emit(score);
 		});
-		
 	}
 
 	jedeteste() {
 		// événement clic sur le bouton "Je déteste"
 		// => le score du collègue est diminué de 5
 		let score:number = this.collegue.score;
-		this.collegueService.detesterUnCollegue(this.collegue).then(result => {
-			score = result.score;
+		this.collegueService.detesterUnCollegue(this.collegue)
+      	.subscribe(collegue => {
+			score = collegue.score;
 			this.change.emit(score);
 		});
 	}

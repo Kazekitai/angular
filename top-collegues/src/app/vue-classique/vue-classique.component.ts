@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Collegue} from '../shared/domain/collegue'
 import { CollegueService } from '../shared/service/collegue.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-vue-classique',
@@ -8,22 +9,25 @@ import { CollegueService } from '../shared/service/collegue.service';
   styleUrls: ['./vue-classique.component.css']
 })
 export class VueClassiqueComponent implements OnInit {
-	collegues:Collegue[] = [];
+  collegues$: Observable<Collegue[]>;
+  limite:number;
 
   constructor(private collegueService:CollegueService) { }
 
   ngOnInit() {
-  	this.collegueService.listerCollegues().then(result => {
-			for(let i in result) {
-				let collegue:Collegue = new Collegue(result[i].id, result[i].pseudo, result[i].imageUrl,result[i].score);
-				this.collegues.push(collegue);
-        this.exist = true;
-			}
-	 });
+    this.collegues$ = this.collegueService.listerCollegues();
   }
 
   limitChanges(event) {
-      this.limit = event;
+      if(event && event.target) {
+        this.limite = Number(event.target.value);
+      }
+      
   }
+
+  handleEventChanged(newLimite:number){
+    return this.limite = newLimite;
+}
+
 
 }

@@ -18,12 +18,14 @@ export class FormCollegueComponent implements OnInit {
   constructor(private collegueService:CollegueService) { }
 
   ngOnInit() {
-  	this.collegueService.listerCollegues().then(result => {
-		for(let i in result) {
-			let collegue:Collegue = new Collegue(result[i].id, result[i].pseudo, result[i].imageUrl,result[i].score);
-			this.collegues.push(collegue);
-		}
-	});
+  	// this.collegueService.listerCollegues().then(result => {
+	// 	for(let i in result) {
+	// 		let collegue:Collegue = new Collegue(result[i].id, result[i].pseudo, result[i].imageUrl,result[i].score);
+	// 		this.collegues.push(collegue);
+	// 	}
+	// });
+	this.collegueService.listerCollegues()
+      .subscribe(collegues => this.collegues = collegues);
   }
 
   	add(pseudo:HTMLInputElement, imageUrl:HTMLInputElement) {

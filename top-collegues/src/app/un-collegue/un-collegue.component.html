@@ -10,7 +10,7 @@
             </div>
         </a>
         <div class="card-footer">
-            <app-bouton-opinion [collegue]="collegue" (change)="collegue.scoreChanges($event)" (click)="collegue.handleEventClicked(collegue.score)"></app-bouton-opinion>
+            <app-bouton-opinion [collegue]="collegue" (change)="scoreChanges($event)" (click)="handleEventClicked(collegue.score)"></app-bouton-opinion>
         </div>
     </div>
 </div>
