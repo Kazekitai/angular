@@ -1,9 +1,3 @@
-<div class="alert alert-success" *ngIf="votePlus">
-    <strong>{{msg}}</strong>
-</div>
-<div class="alert alert-danger" *ngIf="voteMoins">
-    <strong>{{msg}}</strong>
-</div>
-<div class="alert alert-grey" *ngIf="voteNull">
+<div class="alert {{avis[1] === 'aimer' ? 'alert-success' : avis[1] === 'detester' ? 'alert-danger': 'alert-grey'}}">
     <strong>{{msg}}</strong>
 </div>

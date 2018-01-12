@@ -6,6 +6,7 @@
 <app-menu></app-menu>
 <app-limite-nb-collegues (input)="limitChanges($event)" (input)="handleEventChanged(limite)"></app-limite-nb-collegues>
 <app-filtre-collegue-par-pseudo (input)="searchChanges($event)" (input)="handleSearchEventChanged(inputPseudo)"></app-filtre-collegue-par-pseudo>
+<app-votre-dernier-avis></app-votre-dernier-avis>  
 <ngb-carousel class="carrousel-container">
   <ng-template ngbSlide *ngFor="let colleg of collegues | pseudoFilter:inputPseudo  | slice:0:limite;">
     <img class="carrousel-img" src="{{colleg.imageUrl}}" alt="Random first slide" routerLink="/detail/{{colleg.pseudo}}">
@@ -18,3 +19,4 @@
     </div>
   </ng-template>
 </ngb-carousel>
+<app-votre-dernier-avis></app-votre-dernier-avis>  
