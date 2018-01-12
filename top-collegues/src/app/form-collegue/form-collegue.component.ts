@@ -46,7 +46,6 @@ export class FormCollegueComponent implements OnInit {
 				this.msgBackgroundColor = "lightgreen";
 				this.succesAjout = true;
 				this.saveSuccess = true;
-				this.collegueService.refresh();
 			} else {
 				this.msgColor = "white";
 				this.msgBackgroundColor = "red";

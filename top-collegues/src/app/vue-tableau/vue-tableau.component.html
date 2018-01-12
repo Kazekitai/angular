@@ -6,7 +6,8 @@
 <app-menu></app-menu>
 <app-limite-nb-collegues (input)="limitChanges($event)" (input)="handleEventChanged(limite)"></app-limite-nb-collegues>
 <app-filtre-collegue-par-pseudo (input)="searchChanges($event)" (input)="handleSearchEventChanged(inputPseudo)"></app-filtre-collegue-par-pseudo>
-<div class="container">          
+<div class="container">
+    <app-votre-dernier-avis></app-votre-dernier-avis>          
   <table class="table">
     <thead>
       <tr>
@@ -25,4 +26,6 @@
     	</tr>
     </tbody>
   </table>
+  <app-votre-dernier-avis></app-votre-dernier-avis>
 </div>
+

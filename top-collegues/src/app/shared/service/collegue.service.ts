@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class CollegueService {
 	collegues:Collegue[];
 	subject = new BehaviorSubject<Collegue[]>([]);
+	subjectAvis = new BehaviorSubject<string[]>([]);
 	  constructor(private http:HttpClient) {
 		  this.refresh();
 	}
@@ -40,6 +41,7 @@ export class CollegueService {
 	}
 
 	aimerUnCollegue(unCollegue:Collegue):Observable<Collegue> {
+		this.subjectAvis.next([unCollegue.pseudo, "aimer"]);
 		const httpOptions = {
 			headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 		};
@@ -48,6 +50,7 @@ export class CollegueService {
 	}
 
 	detesterUnCollegue(unCollegue:Collegue):Observable<Collegue> {
+		this.subjectAvis.next([ unCollegue.pseudo, "detester"]);
 		const httpOptions = {
 			headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 		};

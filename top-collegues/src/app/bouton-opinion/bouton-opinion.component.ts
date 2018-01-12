@@ -10,6 +10,7 @@ import {Collegue} from '../shared/domain/collegue';
 export class BoutonOpinionComponent implements OnInit {
 	@Input() collegue:Collegue;
 	@Output() change: EventEmitter<number> = new EventEmitter<number>();
+	@Output() changeAvis: EventEmitter<string[]> = new EventEmitter<string[]>();
 
 	constructor(private collegueService:CollegueService) {}
 
@@ -25,6 +26,10 @@ export class BoutonOpinionComponent implements OnInit {
 			score = collegue.score;
 			this.change.emit(score);
 		});
+		//let data = [this.collegue.pseudo,"aimer"];
+		//this.collegueService.subjectAvis.next(data);
+		//console.log('data ', data);
+		//console.log('subject ', this.collegueService.subjectAvis.getValue());
 	}
 
 	jedeteste() {
@@ -36,6 +41,8 @@ export class BoutonOpinionComponent implements OnInit {
 			score = collegue.score;
 			this.change.emit(score);
 		});
+		//let data = [this.collegue.pseudo,"detester"];
+		//this.collegueService.subjectAvis.next(data)
 	}
 
 }

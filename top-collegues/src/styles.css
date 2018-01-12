@@ -56,6 +56,9 @@ body, html {
     justify-content: center;
 }
 
+.alert {
+    margin: 2%;
+}
 
 .button-container {
     display: flex;
@@ -85,6 +88,9 @@ body, html {
 
 }
 
+.container {
+    margin-top: 2%;
+}
 .table td, .table th {
     padding: .75rem;
     vertical-align: middle !important;
@@ -170,4 +176,10 @@ a {
     width: 80%;
     margin-left: 2%;
     margin-top: 2%;
+}
+
+.alert-grey {
+    color: black;
+    background-color: lightgray;
+    border-color: darkgrey;
 }

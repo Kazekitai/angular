@@ -1,3 +1,9 @@
-<p>
-  votre-dernier-avis works!
-</p>
+<div class="alert alert-success" *ngIf="votePlus">
+    <strong>{{msg}}</strong>
+</div>
+<div class="alert alert-danger" *ngIf="voteMoins">
+    <strong>{{msg}}</strong>
+</div>
+<div class="alert alert-grey" *ngIf="voteNull">
+    <strong>{{msg}}</strong>
+</div>
