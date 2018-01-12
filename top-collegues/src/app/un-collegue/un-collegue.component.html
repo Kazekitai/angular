@@ -1,16 +1,14 @@
-<div class="card-container">
+<div class="card-deck">
     <div class="card">
         <a routerLink="/detail/{{collegue.pseudo}}">
-            <img class="card-img-top" src="{{collegue.imageUrl}}">
+            <img class="card-img-top" src="{{collegue.imageUrl}}" alt="Card image cap">
             <div class="card-block">
-                <h5 class="text-bold">{{collegue.pseudo | uppercase}}</h5>
-                <div class="card-text">
-                    {{collegue.score}}
-                </div>
+                <h4 class="card-title" [ngStyle]="{'color': collegue.score > 0 ? 'green' : collegue.score == 0 ? 'black' : 'red'}">{{collegue.score | score}}</h4>
+                <p class="card-text">{{collegue.pseudo | uppercase}}</p>
             </div>
         </a>
         <div class="card-footer">
-            <app-bouton-opinion [collegue]="collegue" (change)="scoreChanges($event)" (click)="handleEventClicked(collegue.score)"></app-bouton-opinion>
+                <app-bouton-opinion [collegue]="collegue" (change)="scoreChanges($event)" (click)="handleEventClicked(collegue.score)"></app-bouton-opinion>
         </div>
     </div>
 </div>

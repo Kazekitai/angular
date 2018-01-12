@@ -14,14 +14,17 @@ import { VueCarrouselComponent } from './vue-carrousel/vue-carrousel.component';
 import { FormCollegueComponent } from './form-collegue/form-collegue.component';
 import { DetailCollegueComponent } from './detail-collegue/detail-collegue.component';
 import { LimiteNbColleguesComponent } from './limite-nb-collegues/limite-nb-collegues.component';
-
+import { ScorePipe } from './shared/pipe/score.pipe';
+import { FiltreCollegueParPseudoComponent } from './filtre-collegue-par-pseudo/filtre-collegue-par-pseudo.component';
+import { PseudoFilterPipe } from './shared/pipe/pseudo-filter/pseudo-filter.pipe';
+import { VotreDernierAvisComponent } from './votre-dernier-avis/votre-dernier-avis.component'
 
 const appRoutes: Routes = [
 { path: 'classique', component: VueClassiqueComponent }, 
 { path: 'tableau', component: VueTableauComponent },
 { path: 'carousel', component: VueCarrouselComponent },
 { path: 'detail/:pseudo', component: DetailCollegueComponent },
-{ path: '**', redirectTo: 'classique'} // redirige vers la route page1 par défaut
+{ path: '**', redirectTo: 'classique'} // redirige vers la route classique par défaut
 ];
 
 @NgModule({
@@ -36,6 +39,10 @@ const appRoutes: Routes = [
     FormCollegueComponent,
     DetailCollegueComponent,
     LimiteNbColleguesComponent,
+    ScorePipe,
+    FiltreCollegueParPseudoComponent,
+    PseudoFilterPipe,
+    VotreDernierAvisComponent,
   ],
   imports: [
     BrowserModule,

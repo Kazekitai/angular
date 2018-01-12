@@ -14,16 +14,12 @@ export class FormCollegueComponent implements OnInit {
 	msg:string;
 	succesAjout:boolean= false;
 	aff:boolean = false;
+	saveSuccess:boolean =  false;
+	saveError:boolean =  false;
 
   constructor(private collegueService:CollegueService) { }
 
   ngOnInit() {
-  	// this.collegueService.listerCollegues().then(result => {
-	// 	for(let i in result) {
-	// 		let collegue:Collegue = new Collegue(result[i].id, result[i].pseudo, result[i].imageUrl,result[i].score);
-	// 		this.collegues.push(collegue);
-	// 	}
-	// });
 	this.collegueService.listerCollegues()
       .subscribe(collegues => this.collegues = collegues);
   }
@@ -37,7 +33,7 @@ export class FormCollegueComponent implements OnInit {
 
 		let id:number = 0;
 		let newCollegue:Collegue = new Collegue(id,pseudo.value,imageUrl.value,0);
-		this.collegueService.sauvegarder(newCollegue).then(result => {
+		this.collegueService.sauvegarder(newCollegue).subscribe(result => {
 			let collegueJson = JSON.parse(result.entite);
 			console.log(result)
 			console.log(collegueJson);
@@ -49,9 +45,12 @@ export class FormCollegueComponent implements OnInit {
 				this.msgColor = "green";
 				this.msgBackgroundColor = "lightgreen";
 				this.succesAjout = true;
+				this.saveSuccess = true;
+				this.collegueService.refresh();
 			} else {
 				this.msgColor = "white";
 				this.msgBackgroundColor = "red";
+				this.saveError = true;
 			}
 			this.msg = result.message;
 		});

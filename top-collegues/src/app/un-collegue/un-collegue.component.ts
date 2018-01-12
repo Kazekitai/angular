@@ -6,12 +6,12 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-un-collegue',
   templateUrl: './un-collegue.component.html',
-  styleUrls: ['./un-collegue.component.css']
+  styleUrls: ['./un-collegue.component.css'],
 })
 export class UnCollegueComponent implements OnInit {
 	@Input() collegue:Collegue
 
-  	constructor(private collegueService:CollegueService) {
+  	constructor() {
   	}
 
   	ngOnInit() {

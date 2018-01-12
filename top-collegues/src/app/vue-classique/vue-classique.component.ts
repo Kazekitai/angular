@@ -9,25 +9,40 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./vue-classique.component.css']
 })
 export class VueClassiqueComponent implements OnInit {
-  collegues$: Observable<Collegue[]>;
+  collegues: Collegue[];
   limite:number;
+  inputPseudo:string;
 
   constructor(private collegueService:CollegueService) { }
 
   ngOnInit() {
-    this.collegues$ = this.collegueService.listerCollegues();
+    this.collegueService.subject.subscribe(col => this.collegues = col );
+    this.collegueService.subject.next(this.collegues);
   }
 
   limitChanges(event) {
       if(event && event.target) {
         this.limite = Number(event.target.value);
       }
-      
   }
 
   handleEventChanged(newLimite:number){
-    return this.limite = newLimite;
-}
+    if(newLimite > 0) {
+      return this.limite = newLimite;
+    }
+    return this.limite = this.collegues.length;
+      
+  }
+
+  searchChanges(event) {
+    if(event && event.target) {
+      this.inputPseudo = event.target.value;
+    }
+  }
+
+  handleSearchEventChanged(newinputPseudo:string){
+    return this.inputPseudo = newinputPseudo;
+  }
 
 
 }

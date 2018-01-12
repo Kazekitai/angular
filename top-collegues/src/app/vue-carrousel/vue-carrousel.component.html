@@ -4,9 +4,10 @@
     <app-form-collegue></app-form-collegue>
 </div>
 <app-menu></app-menu>
-<!-- <app-limite-nb-collegues></app-limite-nb-collegues> -->
+<app-limite-nb-collegues (input)="limitChanges($event)" (input)="handleEventChanged(limite)"></app-limite-nb-collegues>
+<app-filtre-collegue-par-pseudo (input)="searchChanges($event)" (input)="handleSearchEventChanged(inputPseudo)"></app-filtre-collegue-par-pseudo>
 <ngb-carousel class="carrousel-container">
-  <ng-template ngbSlide *ngFor="let colleg of collegues$ | async;">
+  <ng-template ngbSlide *ngFor="let colleg of collegues | pseudoFilter:inputPseudo  | slice:0:limite;">
     <img class="carrousel-img" src="{{colleg.imageUrl}}" alt="Random first slide" routerLink="/detail/{{colleg.pseudo}}">
     <div class="carousel-caption">
       <h3>{{colleg.score}}</h3>

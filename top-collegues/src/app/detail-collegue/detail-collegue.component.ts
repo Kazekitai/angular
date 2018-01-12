@@ -11,19 +11,17 @@ import { Observable } from 'rxjs/Observable';
 })
 export class DetailCollegueComponent implements OnInit {
 	pseudo: string;
-	@Input() collegue:Collegue;
+	// collegue:Collegue;
+	collegue$: Observable<Collegue>;
 
  	constructor(private route: ActivatedRoute, private collegueService:CollegueService) {
 		route.params.subscribe(params => { this.pseudo = params['pseudo'];});
+		console.log('pseudo ',this.pseudo);
   	}
 
   	ngOnInit() {
-  		// this.collegueService.recupererCollegueParPseudo(this.pseudo).then(result => {
-		// 	this.collegue = new Collegue(result[0].id, result[0].pseudo, result[0].imageUrl,result[0].score);
-		// 	console.log('collegue', this.collegue );
-		// });
-		this.collegueService.recupererCollegueParPseudo(this.pseudo).subscribe((c) => { this.collegue = c; });
-		console.log(this.collegue)
+		this.collegue$ = this.collegueService.recupererCollegueParPseudo(this.pseudo);
+		console.log('collegue ',this.collegue$.subscribe((c) => { console.log(c); }));
   	}
 
 }

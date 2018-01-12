@@ -1,6 +1,7 @@
 import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
 import {Collegue} from '../shared/domain/collegue';
 import { Observable } from 'rxjs/Observable';
+import { CollegueService } from '../shared/service/collegue.service';
 
 @Component({
   selector: 'app-limite-nb-collegues',
@@ -8,21 +9,29 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./limite-nb-collegues.component.css']
 })
 export class LimiteNbColleguesComponent implements OnInit {
-	@Output() change: EventEmitter<number> = new EventEmitter<number>();
+	@Output() change: EventEmitter<string> = new EventEmitter<string>();
 	// @Input() collegues:Collegue[];
-	@Input() collegues$: Observable<Collegue[]>;
+	collegues: Collegue[];
 	// limite:HTMLInputElement;
-	limite:number;
+	limite:string;
 
-  constructor() { }
+  constructor(private collegueService:CollegueService) { }
 
   ngOnInit() {
-		this.collegues$.subscribe(collegues => this.limite = collegues.length);
+	this.collegueService.subject.subscribe(col => this.collegues = col );
+    this.collegueService.subject.next(this.collegues);
   }
 
   	handlelimitChanges(event) {
-	  	this.limite = Number(event.target.value);
+		this.limite = event.target.value;
+		if(event.target.value != "") {
 			this.change.emit(this.limite);
+		} else {
+			event.target.value = "";
+			console.log(this.collegues.length);
+			this.change.emit(String(this.collegues.length));
 		}
+		
+	}
 
 }

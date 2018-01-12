@@ -4,7 +4,8 @@
     <app-form-collegue></app-form-collegue>
 </div>
 <app-menu></app-menu>
-<!-- <app-limite-nb-collegues [collegues]="collegues"></app-limite-nb-collegues> -->
+<app-limite-nb-collegues (input)="limitChanges($event)" (input)="handleEventChanged(limite)"></app-limite-nb-collegues>
+<app-filtre-collegue-par-pseudo (input)="searchChanges($event)" (input)="handleSearchEventChanged(inputPseudo)"></app-filtre-collegue-par-pseudo>
 <div class="container">          
   <table class="table">
     <thead>
@@ -15,11 +16,11 @@
         <th>Action</th>
       </tr>
     </thead>
-    <tbody *ngFor="let colleg of collegues$ | async;">
+    <tbody *ngFor="let colleg of collegues | pseudoFilter:inputPseudo | slice:0:limite;">
     	<tr>
     		<td class="table-col"><a routerLink="/detail/{{colleg.pseudo}}"><img src="{{colleg.imageUrl}}" class="table-img"/></a></td>
     		<td class="table-col"><a routerLink="/detail/{{colleg.pseudo}}">{{colleg.pseudo | uppercase}}</a></td>
-    		<td class="table-col">{{colleg.score}}</td>
+    		<td class="table-col" [ngStyle]="{'color': colleg.score > 0 ? 'green' : colleg.score == 0 ? 'black' : 'red'}">{{colleg.score | score}}</td>
     		<td class="table-col"><app-bouton-opinion [collegue]="colleg" (change)="scoreChanges(colleg,$event)" (click)="handleEventClicked(colleg,colleg.score)"></app-bouton-opinion></td>
     	</tr>
     </tbody>

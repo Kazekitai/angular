@@ -4,9 +4,10 @@
     <app-form-collegue></app-form-collegue>
 </div>
 <app-menu></app-menu>
-<app-limite-nb-collegues [collegues$]="collegues$"  (change)="limitChanges($event)" (change)="handleEventChanged(limite)"></app-limite-nb-collegues>
+<app-limite-nb-collegues (input)="limitChanges($event)" (input)="handleEventChanged(limite)"></app-limite-nb-collegues>
+<app-filtre-collegue-par-pseudo (input)="searchChanges($event)" (input)="handleSearchEventChanged(inputPseudo)"></app-filtre-collegue-par-pseudo>
 <div  class="row">
-	<div *ngFor="let colleg of collegues$ | async | slice:0:limite;" class="collegue" >
+	<div *ngFor="let colleg of collegues | pseudoFilter:inputPseudo | slice:0:limite;" class="collegue" >
   		<app-un-collegue [collegue]="colleg"></app-un-collegue>
   	</div>
 </div>
