@@ -12,7 +12,7 @@
 
     <div style="margin-top:10px" class="form-group">
       <div class="col-sm-12 controls">
-        <button id="btn-add" class="btn add-btn" (click)="add(pseudo, imageUrl)">Ajouter un nouveau collègue</button>
+        <button id="btn-add" class="btn add-btn" (click)="add(pseudo, imageUrl)" [disabled]="!actif">Ajouter un nouveau collègue</button>
       </div>
     </div>
     <div class="alert alert-success alert-dismissable" *ngIf="saveSuccess">

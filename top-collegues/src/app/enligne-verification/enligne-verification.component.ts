@@ -9,13 +9,16 @@ import { Observable } from 'rxjs';
 })
 export class EnligneVerificationComponent implements OnInit {
   status:string;
+  enligne:boolean;
 
   constructor(private collegueService:CollegueService) { }
 
   ngOnInit() {
     Observable.interval(5000).subscribe(x => {
       this.collegueService.enLigne();
-      this.collegueService.subjectEnLigne.subscribe(st => this.status = st);
+      this.collegueService.subjectEnLigne.subscribe(st => {
+        this.status = st;
+      });
     });
     
   }

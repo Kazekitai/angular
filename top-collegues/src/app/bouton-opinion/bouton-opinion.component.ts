@@ -1,6 +1,7 @@
 import { Component, Input, Output,EventEmitter, OnInit } from '@angular/core';
 import { CollegueService } from '../shared/service/collegue.service';
 import {Collegue} from '../shared/domain/collegue';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-bouton-opinion',
@@ -10,11 +11,20 @@ import {Collegue} from '../shared/domain/collegue';
 export class BoutonOpinionComponent implements OnInit {
 	@Input() collegue:Collegue;
 	@Output() change: EventEmitter<number> = new EventEmitter<number>();
-	@Output() changeAvis: EventEmitter<string[]> = new EventEmitter<string[]>();
-
+	actif:boolean=false;
 	constructor(private collegueService:CollegueService) {}
 
 	ngOnInit() {
+		Observable.interval(5000).subscribe(x => {
+			this.collegueService.enLigne();
+			this.collegueService.subjectEnLigne.subscribe(st => {
+			  if(st === 'En ligne'){
+				this.actif = true;
+			  } else {
+				this.actif = false;
+			  }
+			});
+		  });
 	}
 
 	jaime() {
@@ -26,10 +36,6 @@ export class BoutonOpinionComponent implements OnInit {
 			score = collegue.score;
 			this.change.emit(score);
 		});
-		//let data = [this.collegue.pseudo,"aimer"];
-		//this.collegueService.subjectAvis.next(data);
-		//console.log('data ', data);
-		//console.log('subject ', this.collegueService.subjectAvis.getValue());
 	}
 
 	jedeteste() {
@@ -41,8 +47,6 @@ export class BoutonOpinionComponent implements OnInit {
 			score = collegue.score;
 			this.change.emit(score);
 		});
-		//let data = [this.collegue.pseudo,"detester"];
-		//this.collegueService.subjectAvis.next(data)
 	}
 
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input,OnInit } from '@angular/core';
 import { CollegueService } from '../shared/service/collegue.service';
-import {Collegue} from '../shared/domain/collegue'
+import {Collegue} from '../shared/domain/collegue';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-form-collegue',
@@ -16,12 +17,26 @@ export class FormCollegueComponent implements OnInit {
 	aff:boolean = false;
 	saveSuccess:boolean =  false;
 	saveError:boolean =  false;
+	@Input() status:string;
+	actif:boolean = false;
 
   constructor(private collegueService:CollegueService) { }
 
   ngOnInit() {
 	this.collegueService.listerCollegues()
-      .subscribe(collegues => this.collegues = collegues);
+	  .subscribe(collegues => this.collegues = collegues);
+	  Observable.interval(5000).subscribe(x => {
+		this.collegueService.enLigne();
+		this.collegueService.subjectEnLigne.subscribe(st => {
+		  this.status = st;
+		  if(this.status === 'En ligne'){
+			this.actif = true;
+			
+		  } else {
+			this.actif = false;
+		  }
+		});
+	  });
   }
 
   	add(pseudo:HTMLInputElement, imageUrl:HTMLInputElement) {
@@ -54,6 +69,10 @@ export class FormCollegueComponent implements OnInit {
 			this.msg = result.message;
 		});
 		return false;
+	}
+
+	estEnLigne() {
+
 	}
 
 }

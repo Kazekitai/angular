@@ -3,7 +3,7 @@
   <h1>Top Collègues</h1>
     <h6>Les meilleurs collègues du moment</h6>
     <p>{{status}}</p>
-    <app-form-collegue></app-form-collegue>
+    <app-form-collegue [status]="status"></app-form-collegue>
 </div>
 <app-menu></app-menu>
 <app-limite-nb-collegues (input)="limitChanges($event)" (input)="handleEventChanged(limite)"></app-limite-nb-collegues>
