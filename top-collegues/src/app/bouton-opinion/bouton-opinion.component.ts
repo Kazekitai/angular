@@ -35,6 +35,8 @@ export class BoutonOpinionComponent implements OnInit {
       	.subscribe(collegue => {
 			score = collegue.score;
 			this.change.emit(score);
+			this.collegueService.refreshVotes("");
+			this.collegueService.subjectIdVote.next("");
 		});
 	}
 
@@ -46,6 +48,8 @@ export class BoutonOpinionComponent implements OnInit {
       	.subscribe(collegue => {
 			score = collegue.score;
 			this.change.emit(score);
+			this.collegueService.refreshVotes("");
+			this.collegueService.subjectIdVote.next("");
 		});
 	}
 

@@ -1,0 +1,19 @@
+<div class="card card-primary historiqueVote">
+  <div class="card-header"><strong>Historique</strong></div>
+  <div class="card-block">
+    <ul class="list-group" *ngFor="let vote of votes">
+        <li class="list-group-item {{vote.avis === 'aimer' ? 'list-group-item-success' : vote.avis === 'detester' ? 'list-group-item-danger': ''}}">
+            <div class="list-item">
+                <div class="media-image">
+                    <img data-src="{{vote.collegue.imageUrl}}" class="img-circle table-img" alt="Name">
+                </div>  
+                <div class="media-body">
+                    <strong class="notification-title"><h6>{{vote.collegue.pseudo}}</h6></strong>
+                    <p class="notification-desc">un vote '{{vote.avis}}' pour {{vote.collegue.pseudo}}. Son score est désormais à {{vote.collegue.score}}</p>
+                    <a class="deleteAtag" (click)=deleteVote(vote.id)>Supprimer</a>
+                  </div>
+            </div>
+        </li>
+      </ul>
+  </div>
+</div>

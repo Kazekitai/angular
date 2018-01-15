@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@media (max-width: 768px) {
+    .btn {
+      padding:2px 4px;
+      font-size:80%;
+      line-height: 1;
+    }
+  }
+  
+  @media (min-width: 769px) and (max-width: 992px) {
+    .btn{
+      padding:4px 9px;
+      font-size:90%;
+      line-height: 1.2;
+    }
+  }
 
 body, html {
     overflow-x: hidden;
@@ -62,8 +77,10 @@ body, html {
 
 .button-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     font-size: 0.8rem;
+    width: 100%;
+    padding: 2%;
 }
 
 .active-link {
@@ -182,4 +199,46 @@ a {
     color: black;
     background-color: lightgray;
     border-color: darkgrey;
+}
+
+.historiqueVote {
+    width: 30%;
+    float: right;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+
+.inline-item {
+    display: inline;
+}
+
+.list-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row,
+}
+
+.media-image {
+    width: 25%;
+    margin-right: 3%;
+}
+.media-image img {
+    width: 100%;
+}
+
+.media-body {
+    text-align: left;
+}
+
+.media-body p {
+    font-size: 0.8rem;
+}
+
+.deleteAtag {
+    cursor: pointer;
+    color: blue !important;
+}
+
+button, a {
+    cursor: pointer;
 }

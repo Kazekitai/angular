@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Collegue } from '../domain/collegue';
+import { Vote } from '../domain/vote';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -11,13 +12,21 @@ export class CollegueService {
 	subject = new BehaviorSubject<Collegue[]>([]);
 	subjectAvis = new BehaviorSubject<string[]>([]);
 	subjectEnLigne  = new BehaviorSubject<string>("");
+	subjectVote  = new BehaviorSubject<Vote[]>([]);
+	subjectIdVote  = new BehaviorSubject<string>("");
+
 	  constructor(private http:HttpClient) {
 		  this.refresh();
+		  this.refreshVotes("");
 	}
 	  
 	refresh() {
 		this.http.get<Collegue[]>('http://localhost:8080/collegues')
 		.subscribe(data => this.subject.next(data))
+	}
+
+	refreshVotes(voteId:string) {
+		this.http.get<Vote[]>('http://localhost:8080/votes?since='+voteId).subscribe(data => {this.subjectVote.next(data); console.log('data',data)});
 	}
 
 	listerCollegues():Observable<Collegue[]> {
@@ -63,7 +72,23 @@ export class CollegueService {
 		} else {
 			this.subjectEnLigne.next("Hors ligne");
 		}
-		
+	}
+
+	listerHistoriqueVotes():Observable<Vote[]> {
+		return this.subjectVote.asObservable();
+	}
+
+	remove(array,value) {
+		console.log('remove ', value);
+		console.log('remove ', array);
+		for(let i=0; i<array.length;i++) {
+			if(array[i].id == value) {
+				this.subjectIdVote.next(value);
+				this.refreshVotes(value);
+				// return array.splice(i, 1);				
+			}
+		}
+		// return false;
 	}
 
 

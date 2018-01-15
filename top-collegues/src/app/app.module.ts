@@ -18,7 +18,8 @@ import { ScorePipe } from './shared/pipe/score.pipe';
 import { FiltreCollegueParPseudoComponent } from './filtre-collegue-par-pseudo/filtre-collegue-par-pseudo.component';
 import { PseudoFilterPipe } from './shared/pipe/pseudo-filter/pseudo-filter.pipe';
 import { VotreDernierAvisComponent } from './votre-dernier-avis/votre-dernier-avis.component';
-import { EnligneVerificationComponent } from './enligne-verification/enligne-verification.component'
+import { EnligneVerificationComponent } from './enligne-verification/enligne-verification.component';
+import { HistoriqueDesVotesComponent } from './historique-des-votes/historique-des-votes.component'
 
 const appRoutes: Routes = [
 { path: 'classique', component: VueClassiqueComponent }, 
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
     PseudoFilterPipe,
     VotreDernierAvisComponent,
     EnligneVerificationComponent,
+    HistoriqueDesVotesComponent,
   ],
   imports: [
     BrowserModule,

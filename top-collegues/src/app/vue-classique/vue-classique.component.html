@@ -9,9 +9,9 @@
 <app-limite-nb-collegues (input)="limitChanges($event)" (input)="handleEventChanged(limite)"></app-limite-nb-collegues>
 <app-filtre-collegue-par-pseudo (input)="searchChanges($event)" (input)="handleSearchEventChanged(inputPseudo)"></app-filtre-collegue-par-pseudo>
 <app-votre-dernier-avis></app-votre-dernier-avis>
+<app-historique-des-votes></app-historique-des-votes>
 <div  class="row">
 	<div *ngFor="let colleg of collegues | pseudoFilter:inputPseudo | slice:0:limite;" class="collegue" >
   		<app-un-collegue [collegue]="colleg"></app-un-collegue>
   	</div>
 </div>
-<app-votre-dernier-avis></app-votre-dernier-avis>

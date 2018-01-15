@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { CollegueService } from '../shared/service/collegue.service';
 import { Observable } from 'rxjs';
 
@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class EnligneVerificationComponent implements OnInit {
   status:string;
   enligne:boolean;
+  @Output() changeActif: EventEmitter<string[]> = new EventEmitter<string[]>();
 
   constructor(private collegueService:CollegueService) { }
 
