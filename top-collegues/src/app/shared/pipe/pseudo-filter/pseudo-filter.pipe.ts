@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PseudoFilterPipe implements PipeTransform {
 
   transform(items: any[], pseudoFilter:string[]): any {
-    console.log('items', items);
     if(!items || !pseudoFilter) {
       return items;
     }
