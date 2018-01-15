@@ -10,13 +10,11 @@ import { Observable } from 'rxjs';
 })
 export class FormCollegueComponent implements OnInit {
 	collegues:Collegue[] = [];
-	msgColor:string;
-	msgBackgroundColor:string;
 	msg:string;
 	succesAjout:boolean= false;
+	alertActive:boolean= false;
+	alertClass:string;
 	aff:boolean = false;
-	saveSuccess:boolean =  false;
-	saveError:boolean =  false;
 	@Input() status:string;
 	actif:boolean = false;
 
@@ -48,31 +46,23 @@ export class FormCollegueComponent implements OnInit {
 
 		let id:number = 0;
 		let newCollegue:Collegue = new Collegue(id,pseudo.value,imageUrl.value,0);
-		this.collegueService.sauvegarder(newCollegue).subscribe(result => {
-			let collegueJson = JSON.parse(result.entite);
-			console.log(result)
-			console.log(collegueJson);
-			
+		this.collegueService.sauvegarder(newCollegue).subscribe(result => {			
 			if(result.succes == "true") {
-				let colleg:Collegue = new Collegue(collegueJson.id,collegueJson.pseudo,collegueJson.imageUrl,collegueJson.score);
-				console.log('colleg ', colleg);
+				let colleg:Collegue = new Collegue(result.entite.id,result.entite.pseudo,result.entite.imageUrl,result.entite.score);
 				this.collegues.push(colleg);
-				this.msgColor = "green";
-				this.msgBackgroundColor = "lightgreen";
+				this.alertClass = "alert-success";
 				this.succesAjout = true;
-				this.saveSuccess = true;
 			} else {
-				this.msgColor = "white";
-				this.msgBackgroundColor = "red";
-				this.saveError = true;
+				this.alertClass = "alert-danger";
 			}
 			this.msg = result.message;
+			this.alertActive = true;
 		});
 		return false;
 	}
 
-	estEnLigne() {
-
+	closeAlert() {
+		this.alertActive = false;
 	}
 
 }

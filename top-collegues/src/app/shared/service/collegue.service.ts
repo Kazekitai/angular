@@ -26,7 +26,7 @@ export class CollegueService {
 	}
 
 	refreshVotes(voteId:string) {
-		this.http.get<Vote[]>('http://localhost:8080/votes?since='+voteId).subscribe(data => {this.subjectVote.next(data); console.log('data',data)});
+		this.http.get<Vote[]>('http://localhost:8080/votes?since='+voteId).subscribe(data => this.subjectVote.next(data));
 	}
 
 	listerCollegues():Observable<Collegue[]> {
@@ -79,16 +79,12 @@ export class CollegueService {
 	}
 
 	remove(array,value) {
-		console.log('remove ', value);
-		console.log('remove ', array);
 		for(let i=0; i<array.length;i++) {
 			if(array[i].id == value) {
-				this.subjectIdVote.next(value);
-				this.refreshVotes(value);
-				// return array.splice(i, 1);				
+				this.subjectIdVote.next(value)
+				this.refreshVotes(value);			
 			}
 		}
-		// return false;
 	}
 
 

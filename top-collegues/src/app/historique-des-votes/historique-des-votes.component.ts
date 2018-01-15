@@ -17,7 +17,6 @@ export class HistoriqueDesVotesComponent implements OnInit {
 
   ngOnInit() {
     Observable.interval(5000).subscribe(x => {
-      console.log('id vote', this.idvote);
       this.collegueService.subjectIdVote.subscribe(id => this.idvote = id);
       this.collegueService.refreshVotes(this.idvote);
       this.collegueService.listerHistoriqueVotes().subscribe(votes => {
@@ -28,7 +27,6 @@ export class HistoriqueDesVotesComponent implements OnInit {
 
   deleteVote(idVote) {
     this.idvote = idVote;
-    console.log('deleteVote ', idVote);
     this.collegueService.remove(this.votes,String(idVote));
   }
 

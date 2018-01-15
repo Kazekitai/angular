@@ -28,7 +28,6 @@ export class LimiteNbColleguesComponent implements OnInit {
 			this.change.emit(this.limite);
 		} else {
 			event.target.value = "";
-			console.log(this.collegues.length);
 			this.change.emit(String(this.collegues.length));
 		}
 		

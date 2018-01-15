@@ -15,12 +15,8 @@
         <button id="btn-add" class="btn add-btn" (click)="add(pseudo, imageUrl)" [disabled]="!actif">Ajouter un nouveau collègue</button>
       </div>
     </div>
-    <div class="alert alert-success alert-dismissable" *ngIf="saveSuccess">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>{{msg}}</strong>
-    </div>
-    <div class="alert alert-danger alert-dismissable" *ngIf="saveError">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div *ngIf="alertActive" class="alert {{alertClass}} alert-dismissable">
+        <a (click)="closeAlert()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>{{msg}}</strong>
     </div>
     
