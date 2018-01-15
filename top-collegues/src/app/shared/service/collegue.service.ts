@@ -10,6 +10,7 @@ export class CollegueService {
 	collegues:Collegue[];
 	subject = new BehaviorSubject<Collegue[]>([]);
 	subjectAvis = new BehaviorSubject<string[]>([]);
+	subjectEnLigne  = new BehaviorSubject<string>("");
 	  constructor(private http:HttpClient) {
 		  this.refresh();
 	}
@@ -21,7 +22,6 @@ export class CollegueService {
 
 	listerCollegues():Observable<Collegue[]> {
 		return this.subject.asObservable();
-		//return this.http.get<Collegue[]>('http://localhost:8080/collegues');
 	}
 
 	recupererCollegueParPseudo(pseudo:string):Observable<Collegue> {
@@ -30,7 +30,6 @@ export class CollegueService {
 		} else {
 			return this.http.get<Collegue>('http://localhost:8080/collegues/'+pseudo);
 		}
-		//return this.http.get<Collegue>('http://localhost:8080/collegues/'+pseudo);
 	}
 	
 	sauvegarder(newCollegue:Collegue):Observable<any> {
@@ -57,5 +56,16 @@ export class CollegueService {
 		let actionType= {"action":"detester"};
 		return this.http.patch<Collegue>('http://localhost:8080/collegues/'+unCollegue.pseudo,actionType);
 	}
+
+	enLigne() {
+		if(navigator.onLine) {
+			this.subjectEnLigne.next("En ligne");
+		} else {
+			this.subjectEnLigne.next("Hors ligne");
+		}
+		
+	}
+
+
 
 }
