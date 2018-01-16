@@ -52,6 +52,7 @@ export class FormCollegueComponent implements OnInit {
 				this.collegues.push(colleg);
 				this.alertClass = "alert-success";
 				this.succesAjout = true;
+				this.collegueService.refresh();
 			} else {
 				this.alertClass = "alert-danger";
 			}
