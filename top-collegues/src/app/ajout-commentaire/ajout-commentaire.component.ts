@@ -62,7 +62,6 @@ export class AjoutCommentaireComponent implements OnInit {
   submit() {
     this.comment.collegue = this.collegue;
     console.log(this.comment);
-    this.collegueService.sauvegarderAvis(this.comment);
     this.collegueService.sauvegarderAvis(this.comment).subscribe(result => {
       console.log('result ',result);			
 			if(result.succes == "true") {
@@ -79,8 +78,6 @@ export class AjoutCommentaireComponent implements OnInit {
 			}
 			
 		});
-
-    
   }
 
 }

@@ -23,6 +23,8 @@ import { HistoriqueDesVotesComponent } from './historique-des-votes/historique-d
 import { AjoutCommentaireComponent } from './ajout-commentaire/ajout-commentaire.component'
 import { FormsModule } from '@angular/forms';
 import { ListCommentairesComponent } from './list-commentaires/list-commentaires.component';
+import { AjoutAvisApplicationComponent } from './ajout-avis-application/ajout-avis-application.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
 { path: 'classique', component: VueClassiqueComponent }, 
@@ -52,13 +54,15 @@ const appRoutes: Routes = [
     HistoriqueDesVotesComponent,
     AjoutCommentaireComponent,
     ListCommentairesComponent,
+    AjoutAvisApplicationComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [CollegueService],
   bootstrap: [AppComponent]

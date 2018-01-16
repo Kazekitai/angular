@@ -260,3 +260,7 @@ button, a {
 .notification-desc {
     margin: 0px;
 }
+
+.btnAddComment {
+    width: 100%;
+}

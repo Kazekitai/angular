@@ -15,7 +15,8 @@
       <h3>{{colleg.score}}</h3>
       <p>{{colleg.pseudo | uppercase}}</p>
       <div class="action-btn-container">
-            <app-bouton-opinion [collegue]="colleg" (change)="scoreChanges(colleg,$event)" (click)="handleEventClicked(colleg,colleg.score)"></app-bouton-opinion>
+          <app-bouton-opinion [collegue]="colleg" (change)="scoreChanges(colleg,$event)" (click)="handleEventClicked(colleg,colleg.score)"></app-bouton-opinion>
+          <app-ajout-commentaire [collegue]="colleg"></app-ajout-commentaire>
         </div>
     </div>
   </ng-template>

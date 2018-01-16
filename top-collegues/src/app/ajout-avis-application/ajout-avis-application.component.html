@@ -1,0 +1,51 @@
+<button id="btnAddComment" class="float-right btn btn-primary btn-sm" (click)="open(content)">Donnez votre avis sur l'application Top Collegues</button>
+
+<ng-template #content let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Votre avis compte</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="formAvisApp" novalidate>
+    <div class="modal-body">
+      <div class="form-group">
+          <label for="message-text" class="form-control-label">Comment trouvez-vous l'application Top Collègue ?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" formControlName="mention" id="rmauvais" value="Mauvais" checked>
+              Mauvais
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" formControlName="mention" id="rbien" value="Bien">
+              Bien
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" formControlName="mention" id="rexcellent" value="Excellent">
+              Excellent
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message-text" class="form-control-label">Avez-vous des suggestions ?</label>
+          <textarea class="form-control" id="avis-text" type="text" formControlName="message"></textarea>
+        </div>      
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" (click)="submit()">Enregistrer</button>
+    </div>
+  </form>
+  <div *ngIf="formAvisApp.get('message').invalid && formAvisApp.get('message').errors.required && (formAvisApp.get('message').dirty || formAvisApp.get('message').touched)"  class="alert alert-danger">
+      Votre avis est requis
+    </div>
+    <div *ngIf="formAvisApp.get('message').invalid && formAvisApp.get('message').errors.maxlength"  class="alert alert-danger">
+      Votre avis doit contenir moins de 255 caractères
+    </div>
+    <div *ngIf="formAvisApp.get('message').invalid && formAvisApp.get('message').errors.minlength"  class="alert alert-danger">
+      Votre avis doit contenir au moins 20 caractères
+    </div>
+</ng-template>

@@ -4,6 +4,7 @@
     <h6>Les meilleurs collègues du moment</h6>
     <p>{{status}}</p>
     <app-form-collegue [status]="status"></app-form-collegue>
+    <app-ajout-avis-application></app-ajout-avis-application>
 </div>
 <app-menu></app-menu>
 <app-limite-nb-collegues (input)="limitChanges($event)" (input)="handleEventChanged(limite)"></app-limite-nb-collegues>

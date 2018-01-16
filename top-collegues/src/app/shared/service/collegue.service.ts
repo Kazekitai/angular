@@ -5,6 +5,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Commentaire } from '../domain/commentaire';
+import { AvisApp } from '../domain/avis-app';
 
 
 @Injectable()
@@ -16,6 +17,7 @@ export class CollegueService {
 	subjectVote  = new BehaviorSubject<Vote[]>([]);
 	subjectIdVote  = new BehaviorSubject<string>("");
 	subjectCommentaire  = new BehaviorSubject<Commentaire[]>([]);
+	subjectAvisApp  = new BehaviorSubject<AvisApp[]>([]);
 
 	  constructor(private http:HttpClient) {
 		  this.refresh();
@@ -34,6 +36,9 @@ export class CollegueService {
 
 	refreshCommentaires() {
 		this.http.get<Commentaire[]>('http://localhost:8080/commentaires').subscribe(data => this.subjectCommentaire.next(data));
+	}
+	refreshAvisApp() {
+		this.http.get<AvisApp[]>('http://localhost:8080/avis').subscribe(data => this.subjectAvisApp.next(data));
 	}
 
 	listerCollegues():Observable<Collegue[]> {
@@ -97,12 +102,23 @@ export class CollegueService {
 		const httpOptions = {
 			headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 		};
-		console.log('newAvis ',newAvis)
 		return this.http.post<Commentaire>('http://localhost:8080/commentaires/creer',newAvis,httpOptions);
 	}
 
 	listerAvis():Observable<Commentaire[]> {
 		return this.subjectCommentaire.asObservable();
+	}
+
+	sauvegarderAvisApp(newAvis:AvisApp):Observable<any> {
+		const httpOptions = {
+			headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+		};
+		console.log('newAvis ',newAvis)
+		return this.http.post<AvisApp>('http://localhost:8080/avis/creer',newAvis,httpOptions);
+	}
+
+	listerAvisApp():Observable<AvisApp[]> {
+		return this.subjectAvisApp.asObservable();
 	}
 
 

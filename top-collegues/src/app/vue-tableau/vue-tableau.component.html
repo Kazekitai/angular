@@ -23,7 +23,7 @@
     		<td class="table-col"><a routerLink="/detail/{{colleg.pseudo}}"><img src="{{colleg.imageUrl}}" class="table-img"/></a></td>
     		<td class="table-col"><a routerLink="/detail/{{colleg.pseudo}}">{{colleg.pseudo | uppercase}}</a></td>
     		<td class="table-col" [ngStyle]="{'color': colleg.score > 0 ? 'green' : colleg.score == 0 ? 'black' : 'red'}">{{colleg.score | score}}</td>
-    		<td class="table-col"><app-bouton-opinion [collegue]="colleg" (change)="scoreChanges(colleg,$event)" (click)="handleEventClicked(colleg,colleg.score)"></app-bouton-opinion></td>
+    		<td class="table-col"><app-bouton-opinion [collegue]="colleg" (change)="scoreChanges(colleg,$event)" (click)="handleEventClicked(colleg,colleg.score)"></app-bouton-opinion><app-ajout-commentaire [collegue]="collegue"></app-ajout-commentaire></td>
     	</tr>
     </tbody>
   </table>
