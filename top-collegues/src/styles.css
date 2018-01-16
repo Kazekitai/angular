@@ -55,6 +55,12 @@ body, html {
     color: black;
 }
 
+.card-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 .text-bold {
     font-weight: 700;
@@ -241,4 +247,16 @@ a {
 
 button, a {
     cursor: pointer;
+}
+
+.comment-info {
+    color: gray;
+}
+
+.commentaires {
+    margin: 2%;
+}
+
+.notification-desc {
+    margin: 0px;
 }

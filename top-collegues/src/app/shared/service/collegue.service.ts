@@ -4,6 +4,7 @@ import { Vote } from '../domain/vote';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Commentaire } from '../domain/commentaire';
 
 
 @Injectable()
@@ -14,10 +15,12 @@ export class CollegueService {
 	subjectEnLigne  = new BehaviorSubject<string>("");
 	subjectVote  = new BehaviorSubject<Vote[]>([]);
 	subjectIdVote  = new BehaviorSubject<string>("");
+	subjectCommentaire  = new BehaviorSubject<Commentaire[]>([]);
 
 	  constructor(private http:HttpClient) {
 		  this.refresh();
 		  this.refreshVotes("");
+		  this.refreshCommentaires();
 	}
 	  
 	refresh() {
@@ -27,6 +30,10 @@ export class CollegueService {
 
 	refreshVotes(voteId:string) {
 		this.http.get<Vote[]>('http://localhost:8080/votes?since='+voteId).subscribe(data => this.subjectVote.next(data));
+	}
+
+	refreshCommentaires() {
+		this.http.get<Commentaire[]>('http://localhost:8080/commentaires').subscribe(data => this.subjectCommentaire.next(data));
 	}
 
 	listerCollegues():Observable<Collegue[]> {
@@ -85,6 +92,17 @@ export class CollegueService {
 				this.refreshVotes(value);			
 			}
 		}
+	}
+	sauvegarderAvis(newAvis:Commentaire):Observable<any> {
+		const httpOptions = {
+			headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+		};
+		console.log('newAvis ',newAvis)
+		return this.http.post<Commentaire>('http://localhost:8080/commentaires/creer',newAvis,httpOptions);
+	}
+
+	listerAvis():Observable<Commentaire[]> {
+		return this.subjectCommentaire.asObservable();
 	}
 
 

@@ -1,0 +1,14 @@
+<div class="card card-primary commentaires">
+  <div class="card-header"><strong>Commentaires</strong></div>
+  <div class="card-block">
+    <ul class="list-group" *ngFor="let comment of commentaires">
+        <li class="list-group-item">
+            <div class="list-item">
+                <div class="media-body">
+                    <p class="notification-desc">{{comment.commentaire}}</p>
+                  </div>
+            </div>
+        </li>
+      </ul>
+  </div>
+</div>

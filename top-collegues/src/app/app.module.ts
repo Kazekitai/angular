@@ -19,7 +19,10 @@ import { FiltreCollegueParPseudoComponent } from './filtre-collegue-par-pseudo/f
 import { PseudoFilterPipe } from './shared/pipe/pseudo-filter/pseudo-filter.pipe';
 import { VotreDernierAvisComponent } from './votre-dernier-avis/votre-dernier-avis.component';
 import { EnligneVerificationComponent } from './enligne-verification/enligne-verification.component';
-import { HistoriqueDesVotesComponent } from './historique-des-votes/historique-des-votes.component'
+import { HistoriqueDesVotesComponent } from './historique-des-votes/historique-des-votes.component';
+import { AjoutCommentaireComponent } from './ajout-commentaire/ajout-commentaire.component'
+import { FormsModule } from '@angular/forms';
+import { ListCommentairesComponent } from './list-commentaires/list-commentaires.component';
 
 const appRoutes: Routes = [
 { path: 'classique', component: VueClassiqueComponent }, 
@@ -47,12 +50,15 @@ const appRoutes: Routes = [
     VotreDernierAvisComponent,
     EnligneVerificationComponent,
     HistoriqueDesVotesComponent,
+    AjoutCommentaireComponent,
+    ListCommentairesComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
+    FormsModule
   ],
   providers: [CollegueService],
   bootstrap: [AppComponent]

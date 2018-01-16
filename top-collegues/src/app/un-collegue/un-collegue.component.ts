@@ -15,6 +15,9 @@ export class UnCollegueComponent implements OnInit {
   	}
 
   	ngOnInit() {
+		  if(this.collegue.pseudo == undefined) {
+			this.collegue.pseudo = "";
+		  }
 	}
 
 	scoreChanges(event) {
