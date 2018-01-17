@@ -36,7 +36,8 @@
         </div>      
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-primary" (click)="submit()">Enregistrer</button>
+      <button type="submit" class="btn btn-primary float-left" (click)="submit()">Enregistrer</button>
+      <a class="float-right blueAtag">Voir tous les avis</a>
     </div>
   </form>
   <div *ngIf="formAvisApp.get('message').invalid && formAvisApp.get('message').errors.required && (formAvisApp.get('message').dirty || formAvisApp.get('message').touched)"  class="alert alert-danger">
@@ -47,5 +48,9 @@
     </div>
     <div *ngIf="formAvisApp.get('message').invalid && formAvisApp.get('message').errors.minlength"  class="alert alert-danger">
       Votre avis doit contenir au moins 20 caractères
+    </div>
+    <div *ngIf="alertActive"  class="alert {{alertClass}}">
+        <a (click)="closeAlert()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      {{msg}}
     </div>
 </ng-template>

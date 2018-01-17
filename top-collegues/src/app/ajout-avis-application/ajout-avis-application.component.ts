@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal,NgbModalRef, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { CollegueService } from '../shared/service/collegue.service';
-import { AvisApp } from '../shared/domain/avis-App';
+import { AvisApp } from '../shared/domain/avis-app';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -49,25 +49,34 @@ export class AjoutAvisApplicationComponent implements OnInit {
   }
 
   submit() {
+    // this.avis.mention = this.formAvisApp.get('mention').value;
+    // this.avis.message = this.formAvisApp.get('message').value;
+    this.avis = new AvisApp(0,this.formAvisApp.get('mention').value,this.formAvisApp.get('message').value)
     console.log(this.avis);
-    if(!this.formAvisApp.get('message').invalid && !this.formAvisApp.get('message').errors.required 
-    && (!this.formAvisApp.get('message').dirty || !this.formAvisApp.get('message').touched
-    && !this.formAvisApp.get('message').errors.maxlength && !this.formAvisApp.get('message').errors.minlength)) {
+    console.log(this.formAvisApp.get('message'));
+    if(this.formAvisApp.status == 'VALID') {
       this.collegueService.sauvegarderAvisApp(this.avis).subscribe(result => {
         console.log('result ',result);			
 			if(result.succes == "true") {
 				let avisApp:AvisApp = new AvisApp(result.entite.id,result.entite.mention,result.entite.message);
         this.collegueService.refreshAvisApp();
-        if ( this.dialog ) {
-          this.dialog.dismiss();
-          this.dialog = null;
-       }
+        this.alertClass = "alert-success";
+        this.msg = result.message;
+			  this.alertActive = true;
+      //   if ( this.dialog ) {
+      //     this.dialog.dismiss();
+      //     this.dialog = null;
+      //  }
 			} else {
         this.alertClass = "alert-danger";
         this.msg = result.message;
 			  this.alertActive = true;
 			}
       });
+    } else {
+      this.alertClass = "alert-danger";
+      this.msg = "Le formulaire n'est pas valide";
+      this.alertActive = true;
     }
 
     
